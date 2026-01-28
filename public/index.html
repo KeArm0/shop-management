@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop 数据管理</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-store"></i> Shop 数据管理</h1>
+            <p>管理您的订单和货物数据</p>
+        </header>
+
+        <div class="toolbar">
+            <div class="actions">
+                <button class="btn btn-secondary" onclick="order()">
+                    <i class="fas fa-sync"></i>下单
+                </button>
+                <!-- <button class="btn btn-primary" onclick="exportSelected()">
+                    <i class="fas fa-download"></i> 导出选中
+                </button>
+                <button class="btn btn-danger" onclick="deleteSelected()">
+                    <i class="fas fa-trash"></i> 删除选中
+                </button>
+                <button class="btn btn-secondary" onclick="refreshData()">
+                    <i class="fas fa-sync"></i> 刷新
+                </button> -->
+            </div>
+            <div class="search-box">
+                <input type="text" id="search" placeholder="搜索订单或货物..." 
+                       onkeyup="searchData()">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" id="selectAll" onclick="toggleSelectAll(this)">
+                        </th>
+                        <th>订单ID</th>
+                        <th>货物ID</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- 数据将通过JavaScript动态加载 -->
+                </tbody>
+            </table>
+
+            <div class="loading" id="loading">
+                <i class="fas fa-spinner fa-spin"></i> 加载中...
+            </div>
+
+            <div class="no-data" id="noData" style="display: none;">
+                <i class="fas fa-database"></i> 暂无数据
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button class="btn btn-secondary" onclick="changePage(currentPage - 1)" id="prevBtn">
+                <i class="fas fa-chevron-left"></i> 上一页
+            </button>
+            
+            <div class="page-info">
+                第 <span id="currentPage">1</span> 页，
+                共 <span id="totalPages">1</span> 页，
+                总计 <span id="totalItems">0</span> 条记录
+            </div>
+            
+            <button class="btn btn-secondary" onclick="changePage(currentPage + 1)" id="nextBtn">
+                下一页 <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="selected-info" id="selectedInfo" style="display: none;">
+            已选择 <span id="selectedCount">0</span> 条记录
+        </div>
+    </div>
+
+    <div class="modal" id="messageModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="new.js"></script>
+</body>
+</html>
